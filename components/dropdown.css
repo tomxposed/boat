@@ -1,0 +1,171 @@
+/**
+ * =========================================================
+ * BOAT UI — Dropdown
+ * =========================================================
+ * CSS-only dropdown using :focus-within.
+ * Works without JavaScript.
+ *
+ * Usage:
+ *   <div class="dropdown">
+ *     <button class="btn btn-secondary dropdown-toggle">Options</button>
+ *     <ul class="dropdown-menu" role="menu">
+ *       <li><a href="#" class="dropdown-item" role="menuitem">Action</a></li>
+ *       <li><hr class="dropdown-divider"></li>
+ *       <li><a href="#" class="dropdown-item dropdown-item-danger" role="menuitem">Delete</a></li>
+ *     </ul>
+ *   </div>
+ * =========================================================
+ */
+
+/* -------------------------------------------------------
+ * Wrapper
+ * ------------------------------------------------------- */
+
+.dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+/* -------------------------------------------------------
+ * Toggle button indicator
+ * ------------------------------------------------------- */
+
+.dropdown-toggle::after {
+    content: '';
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: var(--space-1-5);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: middle;
+    transition: transform var(--duration-150) var(--ease-in-out);
+}
+
+.dropdown:focus-within .dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+/* -------------------------------------------------------
+ * Menu
+ * ------------------------------------------------------- */
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + var(--space-1));
+    left: 0;
+    z-index: var(--z-dropdown);
+    min-width: 12rem;
+    padding: var(--space-1) 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem) scale(0.97);
+    transform-origin: top left;
+    transition:
+        opacity var(--duration-150) var(--ease-out),
+        visibility var(--duration-150) var(--ease-out),
+        transform var(--duration-150) var(--ease-out);
+    list-style: none;
+}
+
+.dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Alignment variants */
+.dropdown-menu-end {
+    left: auto;
+    right: 0;
+    transform-origin: top right;
+}
+
+.dropdown-menu-top {
+    top: auto;
+    bottom: calc(100% + var(--space-1));
+    transform-origin: bottom left;
+}
+
+/* -------------------------------------------------------
+ * Items
+ * ------------------------------------------------------- */
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background var(--duration-100) var(--ease-in-out),
+        color var(--duration-100) var(--ease-in-out);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background: var(--color-bg-subtle);
+    color: var(--color-text);
+    outline: none;
+}
+
+.dropdown-item:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: -2px;
+}
+
+/* Danger variant */
+.dropdown-item-danger {
+    color: var(--color-danger);
+}
+
+.dropdown-item-danger:hover,
+.dropdown-item-danger:focus {
+    background: var(--color-danger-bg);
+    color: var(--color-danger-text);
+}
+
+/* Disabled */
+.dropdown-item[aria-disabled="true"],
+.dropdown-item:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Icon */
+.dropdown-item-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+/* -------------------------------------------------------
+ * Divider & Header
+ * ------------------------------------------------------- */
+
+.dropdown-divider {
+    height: 0;
+    margin: var(--space-1) 0;
+    border: none;
+    border-top: 1px solid var(--color-border);
+}
+
+.dropdown-header {
+    padding: var(--space-2) var(--space-4) var(--space-1);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-subtle);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+}

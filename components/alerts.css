@@ -1,0 +1,201 @@
+/**
+ * =========================================================
+ * BOAT UI — Alerts
+ * =========================================================
+ * Contextual feedback messages with icon support.
+ *
+ * Usage:
+ *   <div class="alert alert-success" role="alert">
+ *     <strong>Success!</strong> Your changes have been saved.
+ *   </div>
+ * =========================================================
+ */
+
+/* =========================================================
+ * BASE ALERT
+ * ========================================================= */
+
+.alert {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-xl);
+    border: 1px solid transparent;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    position: relative;
+}
+
+.alert-icon {
+    flex-shrink: 0;
+    font-size: var(--text-base);
+    line-height: 1.4;
+}
+
+.alert-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.alert-title {
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-1);
+    font-size: var(--text-sm);
+}
+
+.alert p:last-child,
+.alert-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+ * ALERT VARIANTS
+ * ========================================================= */
+
+.alert-info {
+    background-color: var(--color-info-bg);
+    border-color: var(--color-info-border);
+    color: var(--color-info-text);
+}
+
+.alert-success {
+    background-color: var(--color-success-bg);
+    border-color: var(--color-success-border);
+    color: var(--color-success-text);
+}
+
+.alert-warning {
+    background-color: var(--color-warning-bg);
+    border-color: var(--color-warning-border);
+    color: var(--color-warning-text);
+}
+
+.alert-danger {
+    background-color: var(--color-danger-bg);
+    border-color: var(--color-danger-border);
+    color: var(--color-danger-text);
+}
+
+.alert-neutral {
+    background-color: var(--color-bg-subtle);
+    border-color: var(--color-border);
+    color: var(--color-text-muted);
+}
+
+/* =========================================================
+ * ALERT WITH ICON (auto via ::before)
+ * ========================================================= */
+
+.alert-icon-auto::before {
+    flex-shrink: 0;
+    font-size: var(--text-base);
+    line-height: 1.4;
+}
+
+.alert-info.alert-icon-auto::before {
+    content: 'ℹ';
+}
+
+.alert-success.alert-icon-auto::before {
+    content: '✓';
+    font-weight: bold;
+}
+
+.alert-warning.alert-icon-auto::before {
+    content: '⚠';
+}
+
+.alert-danger.alert-icon-auto::before {
+    content: '✕';
+    font-weight: bold;
+}
+
+/* =========================================================
+ * ALERT BANNER (full-width, no radius)
+ * ========================================================= */
+
+.alert-banner {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding: var(--space-3) var(--space-4);
+    justify-content: center;
+    text-align: center;
+}
+
+/* =========================================================
+ * ALERT WITH LEFT ACCENT BORDER
+ * ========================================================= */
+
+.alert-accent {
+    border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+    border-left-width: 4px;
+}
+
+/* =========================================================
+ * DISMISSIBLE ALERT (CSS-only via checkbox)
+ * =========================================================
+ *
+ * Usage:
+ *   <div class="alert alert-info alert-dismissible">
+ *     <input type="checkbox" id="dismiss-1" class="alert-dismiss-input">
+ *     <div class="alert-content">Your message here.</div>
+ *     <label for="dismiss-1" class="alert-dismiss-btn" aria-label="Dismiss">✕</label>
+ *   </div>
+ */
+
+.alert-dismissible {
+    padding-right: var(--space-10);
+}
+
+.alert-dismiss-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.alert-dismiss-btn {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: var(--text-xs);
+    color: currentColor;
+    opacity: 0.6;
+    transition: opacity var(--duration-150) var(--ease-in-out),
+        background-color var(--duration-150) var(--ease-in-out);
+    line-height: 1;
+}
+
+.alert-dismiss-btn:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.alert-dismiss-input:checked~.alert-content,
+.alert-dismiss-input:checked~.alert-dismiss-btn {
+    display: none;
+}
+
+.alert-dismissible:has(.alert-dismiss-input:checked) {
+    display: none;
+}
+
+/* =========================================================
+ * TOAST-STYLE ALERT
+ * ========================================================= */
+
+.alert-toast {
+    box-shadow: var(--shadow-xl);
+    border-radius: var(--radius-xl);
+    max-width: 24rem;
+}

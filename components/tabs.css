@@ -1,0 +1,224 @@
+/**
+ * =========================================================
+ * BOAT UI — Tabs
+ * =========================================================
+ * CSS-only tabs using :target or radio inputs.
+ *
+ * Usage (radio-based, no JS):
+ *   <div class="tabs">
+ *     <div class="tab-list" role="tablist">
+ *       <input type="radio" name="tabs-1" id="tab-1" class="tab-input" checked hidden>
+ *       <label for="tab-1" class="tab" role="tab">Tab One</label>
+ *
+ *       <input type="radio" name="tabs-1" id="tab-2" class="tab-input" hidden>
+ *       <label for="tab-2" class="tab" role="tab">Tab Two</label>
+ *     </div>
+ *
+ *     <div class="tab-panels">
+ *       <div class="tab-panel" id="panel-1">Content 1</div>
+ *       <div class="tab-panel" id="panel-2">Content 2</div>
+ *     </div>
+ *   </div>
+ *
+ * Usage (simple link-based, for same-page anchors):
+ *   <nav class="tab-list" aria-label="Tabs">
+ *     <a href="#" class="tab tab-active">Overview</a>
+ *     <a href="#" class="tab">Details</a>
+ *   </nav>
+ * =========================================================
+ */
+
+/* -------------------------------------------------------
+ * Tab list (nav bar)
+ * ------------------------------------------------------- */
+
+.tab-list {
+    display: flex;
+    align-items: flex-end;
+    gap: 0;
+    border-bottom: 1px solid var(--color-border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tab-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* -------------------------------------------------------
+ * Hidden radio inputs
+ * ------------------------------------------------------- */
+
+.tab-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+/* -------------------------------------------------------
+ * Tab item
+ * ------------------------------------------------------- */
+
+.tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition:
+        color var(--duration-150) var(--ease-in-out),
+        border-color var(--duration-150) var(--ease-in-out);
+    user-select: none;
+}
+
+.tab:hover {
+    color: var(--color-text);
+    border-bottom-color: var(--color-border-strong);
+}
+
+.tab:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+/* Active state — via class or checked radio */
+.tab-active,
+.tab-input:checked+.tab {
+    color: var(--color-brand);
+    border-bottom-color: var(--color-brand);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Badge inside tab */
+.tab-badge {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    padding: 0.1em var(--space-1-5);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-full);
+    color: var(--color-text-muted);
+}
+
+.tab-active .tab-badge,
+.tab-input:checked+.tab .tab-badge {
+    background: var(--color-brand-subtle);
+    color: var(--color-brand);
+}
+
+/* -------------------------------------------------------
+ * Variants
+ * ------------------------------------------------------- */
+
+/* Pills */
+.tab-list-pills {
+    border-bottom: none;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-xl);
+    display: inline-flex;
+}
+
+.tab-list-pills .tab {
+    border-bottom: none;
+    margin-bottom: 0;
+    border-radius: var(--radius-lg);
+    padding: var(--space-2) var(--space-4);
+}
+
+.tab-list-pills .tab:hover {
+    background: var(--color-surface);
+    border-bottom-color: transparent;
+}
+
+.tab-list-pills .tab-active,
+.tab-list-pills .tab-input:checked+.tab {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-bottom-color: transparent;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Boxed */
+.tab-list-boxed {
+    border-bottom: none;
+    gap: var(--space-1);
+}
+
+.tab-list-boxed .tab {
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    margin-bottom: 0;
+}
+
+.tab-list-boxed .tab:hover {
+    border-color: var(--color-border);
+    border-bottom-color: transparent;
+}
+
+.tab-list-boxed .tab-active,
+.tab-list-boxed .tab-input:checked+.tab {
+    border-color: var(--color-border);
+    border-bottom-color: var(--color-surface);
+    background: var(--color-surface);
+    color: var(--color-text);
+}
+
+/* Vertical */
+.tab-list-vertical {
+    flex-direction: column;
+    border-bottom: none;
+    border-right: 1px solid var(--color-border);
+    align-items: stretch;
+}
+
+.tab-list-vertical .tab {
+    border-bottom: none;
+    border-right: 2px solid transparent;
+    margin-bottom: 0;
+    margin-right: -1px;
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.tab-list-vertical .tab-active,
+.tab-list-vertical .tab-input:checked+.tab {
+    border-right-color: var(--color-brand);
+    background: var(--color-brand-subtle);
+}
+
+/* -------------------------------------------------------
+ * Tab panels
+ * ------------------------------------------------------- */
+
+.tab-panels {
+    padding: var(--space-5) 0;
+}
+
+.tab-panel {
+    display: none;
+}
+
+/* Show panel when corresponding radio is checked */
+#tab-1:checked~.tab-panels>.tab-panel:nth-child(1),
+#tab-2:checked~.tab-panels>.tab-panel:nth-child(2),
+#tab-3:checked~.tab-panels>.tab-panel:nth-child(3),
+#tab-4:checked~.tab-panels>.tab-panel:nth-child(4),
+#tab-5:checked~.tab-panels>.tab-panel:nth-child(5) {
+    display: block;
+}
+
+.tab-panel-active {
+    display: block;
+}

@@ -1,0 +1,304 @@
+/**
+ * =========================================================
+ * BOAT UI — Modern CSS Reset
+ * =========================================================
+ * Based on modern reset best practices.
+ * Normalizes browser defaults for consistent rendering.
+ * =========================================================
+ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Root defaults */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+}
+
+/* Body defaults */
+body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: var(--leading-tight);
+}
+
+/* Lists */
+ol,
+ul {
+    list-style: none;
+}
+
+/* Quotes */
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+    content: '';
+    content: none;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Media */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+    display: block;
+    max-width: 100%;
+}
+
+img,
+video {
+    height: auto;
+}
+
+/* Forms */
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+    -webkit-appearance: button;
+    appearance: button;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+button:disabled,
+[type='button']:disabled,
+[type='reset']:disabled,
+[type='submit']:disabled {
+    cursor: not-allowed;
+}
+
+input,
+textarea,
+select {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Remove number input spinners */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Remove search input clear button */
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Fieldset */
+fieldset {
+    border: none;
+}
+
+legend {
+    padding: 0;
+}
+
+/* Links */
+a {
+    color: var(--color-text-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: var(--transition-colors);
+}
+
+a:hover {
+    color: var(--color-text-link-hover);
+}
+
+/* Code */
+code,
+kbd,
+samp,
+pre {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    height: 0;
+    color: inherit;
+}
+
+/* Abbreviations */
+abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+}
+
+/* Mark */
+mark {
+    background-color: var(--color-warning-100);
+    color: var(--color-warning-900);
+    padding: 0 0.2em;
+    border-radius: var(--radius-sm);
+}
+
+/* Sub/sup */
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/* Summary/details */
+summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* =========================================================
+ * ACCESSIBLE FOCUS STYLES
+ * ========================================================= */
+
+/* Remove default outline, replaced with custom focus ring */
+:focus {
+    outline: none;
+}
+
+/* Visible focus ring for keyboard navigation */
+:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Skip to main content link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-4);
+    z-index: var(--z-toast);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-brand);
+    color: var(--color-brand-text);
+    font-weight: var(--font-weight-semibold);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: top var(--duration-150) var(--ease-out);
+}
+
+.skip-link:focus {
+    top: var(--space-4);
+    outline: 2px solid var(--color-neutral-0);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+ * SELECTION
+ * ========================================================= */
+
+::selection {
+    background-color: var(--color-primary-200);
+    color: var(--color-primary-900);
+}
+
+/* =========================================================
+ * SCROLLBAR (Webkit)
+ * ========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-neutral-300);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-neutral-400);
+}

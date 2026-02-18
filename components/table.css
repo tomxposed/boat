@@ -1,0 +1,207 @@
+/**
+ * =========================================================
+ * BOAT UI — Table
+ * =========================================================
+ *
+ * Usage:
+ *   <div class="table-wrapper">
+ *     <table class="table">
+ *       <thead>
+ *         <tr>
+ *           <th scope="col">Name</th>
+ *           <th scope="col">Status</th>
+ *         </tr>
+ *       </thead>
+ *       <tbody>
+ *         <tr>
+ *           <td>Alice</td>
+ *           <td><span class="badge badge-success">Active</span></td>
+ *         </tr>
+ *       </tbody>
+ *     </table>
+ *   </div>
+ * =========================================================
+ */
+
+/* -------------------------------------------------------
+ * Scroll wrapper
+ * ------------------------------------------------------- */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+}
+
+/* -------------------------------------------------------
+ * Base table
+ * ------------------------------------------------------- */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+    color: var(--color-text);
+    background: var(--color-surface);
+}
+
+/* -------------------------------------------------------
+ * Header
+ * ------------------------------------------------------- */
+
+.table thead {
+    background: var(--color-bg-subtle);
+}
+
+.table th {
+    padding: var(--space-3) var(--space-4);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    white-space: nowrap;
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* -------------------------------------------------------
+ * Body cells
+ * ------------------------------------------------------- */
+
+.table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+    color: var(--color-text);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* -------------------------------------------------------
+ * Variants
+ * ------------------------------------------------------- */
+
+/* Striped rows */
+.table-striped tbody tr:nth-child(even) {
+    background: var(--color-bg-subtle);
+}
+
+/* Hoverable rows */
+.table-hover tbody tr {
+    transition: background var(--duration-100) var(--ease-in-out);
+}
+
+.table-hover tbody tr:hover {
+    background: var(--color-bg-subtle);
+}
+
+/* Bordered — all cells get borders */
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid var(--color-border);
+}
+
+/* Borderless */
+.table-borderless th,
+.table-borderless td {
+    border: none;
+}
+
+.table-borderless thead {
+    border-bottom: 2px solid var(--color-border);
+}
+
+/* Compact */
+.table-sm th,
+.table-sm td {
+    padding: var(--space-2) var(--space-3);
+}
+
+/* Comfortable */
+.table-lg th,
+.table-lg td {
+    padding: var(--space-4) var(--space-5);
+}
+
+/* -------------------------------------------------------
+ * Row states
+ * ------------------------------------------------------- */
+
+.table tr.row-active {
+    background: var(--color-brand-subtle);
+}
+
+.table tr.row-success {
+    background: var(--color-success-bg);
+}
+
+.table tr.row-warning {
+    background: var(--color-warning-bg);
+}
+
+.table tr.row-danger {
+    background: var(--color-danger-bg);
+}
+
+/* -------------------------------------------------------
+ * Sortable column header
+ * ------------------------------------------------------- */
+
+.table th[aria-sort] {
+    cursor: pointer;
+    user-select: none;
+}
+
+.table th[aria-sort]:hover {
+    color: var(--color-text);
+}
+
+.table th[aria-sort="ascending"]::after {
+    content: ' ↑';
+}
+
+.table th[aria-sort="descending"]::after {
+    content: ' ↓';
+}
+
+.table th[aria-sort="none"]::after {
+    content: ' ↕';
+    opacity: 0.4;
+}
+
+/* -------------------------------------------------------
+ * Sticky header
+ * ------------------------------------------------------- */
+
+.table-sticky thead th {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-raised);
+    background: var(--color-bg-subtle);
+    box-shadow: 0 1px 0 var(--color-border);
+}
+
+/* -------------------------------------------------------
+ * Checkbox column
+ * ------------------------------------------------------- */
+
+.table .col-check {
+    width: 2.5rem;
+    padding-right: 0;
+}
+
+/* -------------------------------------------------------
+ * Empty state
+ * ------------------------------------------------------- */
+
+.table-empty {
+    text-align: center;
+    padding: var(--space-12) var(--space-4);
+    color: var(--color-text-subtle);
+    font-size: var(--text-sm);
+}

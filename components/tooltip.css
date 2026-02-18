@@ -1,0 +1,202 @@
+/**
+ * =========================================================
+ * BOAT UI — Tooltip
+ * =========================================================
+ * CSS-only tooltip using data-tooltip attribute + :hover/:focus-visible.
+ *
+ * Usage:
+ *   <button class="tooltip-trigger" data-tooltip="Save your changes">
+ *     Save
+ *   </button>
+ *
+ *   <!-- Placement variants -->
+ *   <span class="tooltip-trigger tooltip-top"    data-tooltip="Top">Hover</span>
+ *   <span class="tooltip-trigger tooltip-bottom" data-tooltip="Bottom">Hover</span>
+ *   <span class="tooltip-trigger tooltip-left"   data-tooltip="Left">Hover</span>
+ *   <span class="tooltip-trigger tooltip-right"  data-tooltip="Right">Hover</span>
+ * =========================================================
+ */
+
+/* -------------------------------------------------------
+ * Trigger wrapper
+ * ------------------------------------------------------- */
+
+.tooltip-trigger {
+    position: relative;
+    display: inline-flex;
+}
+
+/* -------------------------------------------------------
+ * Tooltip bubble (via ::before + ::after)
+ * ::before = arrow
+ * ::after  = label
+ * ------------------------------------------------------- */
+
+.tooltip-trigger::before,
+.tooltip-trigger::after {
+    position: absolute;
+    z-index: var(--z-tooltip);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--duration-150) var(--ease-out),
+        transform var(--duration-150) var(--ease-out);
+}
+
+/* Label */
+.tooltip-trigger::after {
+    content: attr(data-tooltip);
+    background: var(--color-neutral-900);
+    color: var(--color-neutral-0);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--leading-snug);
+    padding: var(--space-1-5) var(--space-2-5);
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+    max-width: 16rem;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+/* Arrow */
+.tooltip-trigger::before {
+    content: '';
+    border: 5px solid transparent;
+}
+
+/* -------------------------------------------------------
+ * Show on hover / focus
+ * ------------------------------------------------------- */
+
+.tooltip-trigger:hover::before,
+.tooltip-trigger:hover::after,
+.tooltip-trigger:focus-visible::before,
+.tooltip-trigger:focus-visible::after {
+    opacity: 1;
+}
+
+/* -------------------------------------------------------
+ * Top (default)
+ * ------------------------------------------------------- */
+
+.tooltip-trigger:not([class*="tooltip-bottom"]):not([class*="tooltip-left"]):not([class*="tooltip-right"])::after,
+.tooltip-top::after {
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+}
+
+.tooltip-trigger:not([class*="tooltip-bottom"]):not([class*="tooltip-left"]):not([class*="tooltip-right"]):hover::after,
+.tooltip-trigger:not([class*="tooltip-bottom"]):not([class*="tooltip-left"]):not([class*="tooltip-right"]):focus-visible::after,
+.tooltip-top:hover::after,
+.tooltip-top:focus-visible::after {
+    transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-trigger:not([class*="tooltip-bottom"]):not([class*="tooltip-left"]):not([class*="tooltip-right"])::before,
+.tooltip-top::before {
+    bottom: calc(100% + 0px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    border-top-color: var(--color-neutral-900);
+}
+
+.tooltip-trigger:not([class*="tooltip-bottom"]):not([class*="tooltip-left"]):not([class*="tooltip-right"]):hover::before,
+.tooltip-trigger:not([class*="tooltip-bottom"]):not([class*="tooltip-left"]):not([class*="tooltip-right"]):focus-visible::before,
+.tooltip-top:hover::before,
+.tooltip-top:focus-visible::before {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* -------------------------------------------------------
+ * Bottom
+ * ------------------------------------------------------- */
+
+.tooltip-bottom::after {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+}
+
+.tooltip-bottom:hover::after,
+.tooltip-bottom:focus-visible::after {
+    transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-bottom::before {
+    top: calc(100% + 0px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    border-bottom-color: var(--color-neutral-900);
+}
+
+.tooltip-bottom:hover::before,
+.tooltip-bottom:focus-visible::before {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* -------------------------------------------------------
+ * Left
+ * ------------------------------------------------------- */
+
+.tooltip-left::after {
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%) translateX(4px);
+}
+
+.tooltip-left:hover::after,
+.tooltip-left:focus-visible::after {
+    transform: translateY(-50%) translateX(0);
+}
+
+.tooltip-left::before {
+    right: calc(100% + 0px);
+    top: 50%;
+    transform: translateY(-50%) translateX(4px);
+    border-left-color: var(--color-neutral-900);
+}
+
+.tooltip-left:hover::before,
+.tooltip-left:focus-visible::before {
+    transform: translateY(-50%) translateX(0);
+}
+
+/* -------------------------------------------------------
+ * Right
+ * ------------------------------------------------------- */
+
+.tooltip-right::after {
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-4px);
+}
+
+.tooltip-right:hover::after,
+.tooltip-right:focus-visible::after {
+    transform: translateY(-50%) translateX(0);
+}
+
+.tooltip-right::before {
+    left: calc(100% + 0px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-4px);
+    border-right-color: var(--color-neutral-900);
+}
+
+.tooltip-right:hover::before,
+.tooltip-right:focus-visible::before {
+    transform: translateY(-50%) translateX(0);
+}
+
+/* -------------------------------------------------------
+ * Reduced motion
+ * ------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tooltip-trigger::before,
+    .tooltip-trigger::after {
+        transition: opacity var(--duration-100) var(--ease-out);
+    }
+}

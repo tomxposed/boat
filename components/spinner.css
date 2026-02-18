@@ -1,0 +1,216 @@
+/**
+ * =========================================================
+ * BOAT UI — Spinner
+ * =========================================================
+ *
+ * Usage:
+ *   <span class="spinner" role="status" aria-label="Loading"></span>
+ *   <span class="spinner spinner-lg spinner-success" role="status" aria-label="Loading"></span>
+ *
+ *   <!-- Dots -->
+ *   <span class="spinner-dots" role="status" aria-label="Loading">
+ *     <span></span><span></span><span></span>
+ *   </span>
+ *
+ *   <!-- Overlay -->
+ *   <div class="spinner-overlay">
+ *     <span class="spinner spinner-lg" role="status" aria-label="Loading"></span>
+ *   </div>
+ * =========================================================
+ */
+
+/* -------------------------------------------------------
+ * Ring spinner
+ * ------------------------------------------------------- */
+
+.spinner {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid var(--color-border);
+    border-top-color: var(--color-brand);
+    border-radius: 50%;
+    animation: spinner-rotate 0.65s linear infinite;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+@keyframes spinner-rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Size variants */
+.spinner-xs {
+    width: 0.875rem;
+    height: 0.875rem;
+    border-width: 1.5px;
+}
+
+.spinner-sm {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-width: 2px;
+}
+
+.spinner-md {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-width: 2px;
+}
+
+.spinner-lg {
+    width: 2rem;
+    height: 2rem;
+    border-width: 3px;
+}
+
+.spinner-xl {
+    width: 3rem;
+    height: 3rem;
+    border-width: 4px;
+}
+
+/* Color variants */
+.spinner-primary {
+    border-top-color: var(--color-brand);
+}
+
+.spinner-success {
+    border-top-color: var(--color-success);
+}
+
+.spinner-warning {
+    border-top-color: var(--color-warning);
+}
+
+.spinner-danger {
+    border-top-color: var(--color-danger);
+}
+
+.spinner-info {
+    border-top-color: var(--color-info);
+}
+
+.spinner-white {
+    border-color: rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+}
+
+.spinner-muted {
+    border-top-color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------
+ * Grow / pulse spinner
+ * ------------------------------------------------------- */
+
+.spinner-grow {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-brand);
+    border-radius: 50%;
+    animation: spinner-grow 0.75s ease-in-out infinite;
+    vertical-align: middle;
+}
+
+@keyframes spinner-grow {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+.spinner-grow-success {
+    background: var(--color-success);
+}
+
+.spinner-grow-warning {
+    background: var(--color-warning);
+}
+
+.spinner-grow-danger {
+    background: var(--color-danger);
+}
+
+/* -------------------------------------------------------
+ * Dots spinner
+ * ------------------------------------------------------- */
+
+.spinner-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.spinner-dots span {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--color-brand);
+    border-radius: 50%;
+    animation: spinner-bounce 1.2s ease-in-out infinite;
+}
+
+.spinner-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.spinner-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.spinner-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes spinner-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* -------------------------------------------------------
+ * Overlay
+ * ------------------------------------------------------- */
+
+.spinner-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: inherit;
+    z-index: var(--z-raised);
+    backdrop-filter: blur(2px);
+}
+
+/* -------------------------------------------------------
+ * Reduced motion
+ * ------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .spinner,
+    .spinner-grow,
+    .spinner-dots span {
+        animation-duration: 1.5s;
+    }
+}

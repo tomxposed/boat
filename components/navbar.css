@@ -1,0 +1,497 @@
+/**
+ * =========================================================
+ * BOAT UI — Navbar
+ * =========================================================
+ * Responsive navigation bar with CSS-only mobile menu.
+ * Uses checkbox hack for hamburger toggle — no JavaScript.
+ *
+ * Usage:
+ *   <header class="navbar" role="banner">
+ *     <nav class="navbar-inner container" aria-label="Main navigation">
+ *       <a href="/" class="navbar-brand">Brand</a>
+ *
+ *       <!-- Mobile toggle -->
+ *       <input type="checkbox" id="nav-toggle" class="navbar-toggle-input">
+ *       <label for="nav-toggle" class="navbar-toggle" aria-label="Toggle navigation">
+ *         <span class="navbar-toggle-bar"></span>
+ *         <span class="navbar-toggle-bar"></span>
+ *         <span class="navbar-toggle-bar"></span>
+ *       </label>
+ *
+ *       <!-- Nav links -->
+ *       <div class="navbar-collapse">
+ *         <ul class="navbar-nav" role="list">
+ *           <li><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+ *           <li><a href="#" class="nav-link">About</a></li>
+ *         </ul>
+ *         <div class="navbar-actions">
+ *           <a href="#" class="btn btn-primary btn-sm">Sign up</a>
+ *         </div>
+ *       </div>
+ *     </nav>
+ *   </header>
+ * =========================================================
+ */
+
+/* =========================================================
+ * NAVBAR BASE
+ * ========================================================= */
+
+.navbar {
+    position: relative;
+    z-index: var(--z-sticky);
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-xs);
+}
+
+.navbar-sticky {
+    position: sticky;
+    top: 0;
+}
+
+.navbar-inner {
+    display: flex;
+    align-items: center;
+    height: var(--navbar-height);
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+/* =========================================================
+ * BRAND
+ * ========================================================= */
+
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-decoration: none;
+    letter-spacing: var(--tracking-tight);
+    flex-shrink: 0;
+    transition: color var(--duration-150) var(--ease-in-out);
+}
+
+.navbar-brand:hover {
+    color: var(--color-brand);
+    text-decoration: none;
+}
+
+.navbar-brand-logo {
+    height: 2rem;
+    width: auto;
+}
+
+/* =========================================================
+ * HAMBURGER TOGGLE (CSS-only)
+ * ========================================================= */
+
+.navbar-toggle-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: var(--space-2);
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    margin-left: auto;
+    transition: background-color var(--duration-150) var(--ease-in-out);
+    flex-shrink: 0;
+}
+
+.navbar-toggle:hover {
+    background-color: var(--color-bg-subtle);
+}
+
+.navbar-toggle-bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text);
+    border-radius: var(--radius-full);
+    transition: transform var(--duration-200) var(--ease-in-out),
+        opacity var(--duration-200) var(--ease-in-out);
+    transform-origin: center;
+}
+
+/* Hamburger → X animation */
+.navbar-toggle-input:checked~.navbar-inner .navbar-toggle .navbar-toggle-bar:nth-child(1),
+.navbar-toggle-input:checked+.navbar-inner .navbar-toggle .navbar-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.navbar-toggle-input:checked~.navbar-inner .navbar-toggle .navbar-toggle-bar:nth-child(2),
+.navbar-toggle-input:checked+.navbar-inner .navbar-toggle .navbar-toggle-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.navbar-toggle-input:checked~.navbar-inner .navbar-toggle .navbar-toggle-bar:nth-child(3),
+.navbar-toggle-input:checked+.navbar-inner .navbar-toggle .navbar-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =========================================================
+ * NAVBAR COLLAPSE
+ * ========================================================= */
+
+.navbar-collapse {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex: 1;
+}
+
+/* =========================================================
+ * NAV LINKS
+ * ========================================================= */
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1-5);
+    padding: var(--space-1-5) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition: var(--transition-colors),
+        background-color var(--duration-150) var(--ease-in-out);
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: var(--color-text);
+    background-color: var(--color-bg-subtle);
+    text-decoration: none;
+}
+
+.nav-link.active,
+.nav-link[aria-current="page"] {
+    color: var(--color-brand);
+    background-color: var(--color-brand-subtle);
+    font-weight: var(--font-weight-semibold);
+}
+
+.nav-link:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+ * NAVBAR ACTIONS (right side)
+ * ========================================================= */
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-left: auto;
+}
+
+/* =========================================================
+ * DROPDOWN (CSS-only via :focus-within)
+ * ========================================================= */
+
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.nav-dropdown-toggle::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid currentColor;
+    transition: transform var(--duration-150) var(--ease-in-out);
+}
+
+.nav-dropdown:focus-within .nav-dropdown-toggle::after,
+.nav-dropdown:hover .nav-dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 0;
+    min-width: 12rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-1-5);
+    z-index: var(--z-dropdown);
+    list-style: none;
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: opacity var(--duration-150) var(--ease-out),
+        visibility var(--duration-150) var(--ease-out),
+        transform var(--duration-150) var(--ease-out);
+    pointer-events: none;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition: var(--transition-colors),
+        background-color var(--duration-100) var(--ease-in-out);
+    white-space: nowrap;
+}
+
+.nav-dropdown-item:hover {
+    background-color: var(--color-bg-subtle);
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.nav-dropdown-divider {
+    height: 1px;
+    background-color: var(--color-border);
+    margin: var(--space-1-5) 0;
+}
+
+/* =========================================================
+ * NAVBAR THEMES
+ * ========================================================= */
+
+.navbar-dark {
+    background-color: var(--color-neutral-900);
+    border-bottom-color: var(--color-neutral-700);
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+    color: var(--color-neutral-300);
+}
+
+.navbar-dark .navbar-brand:hover,
+.navbar-dark .nav-link:hover {
+    color: var(--color-neutral-0);
+    background-color: var(--color-neutral-800);
+}
+
+.navbar-dark .nav-link.active {
+    color: var(--color-primary-400);
+    background-color: rgba(99, 102, 241, 0.15);
+}
+
+.navbar-dark .navbar-toggle-bar {
+    background-color: var(--color-neutral-300);
+}
+
+.navbar-transparent {
+    background-color: transparent;
+    border-bottom-color: transparent;
+    box-shadow: none;
+}
+
+/* =========================================================
+ * RESPONSIVE — Mobile menu
+ * ========================================================= */
+
+@media (max-width: 767px) {
+    .navbar-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding-top: var(--space-3);
+        padding-bottom: var(--space-3);
+        align-items: center;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-collapse {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding-bottom: var(--space-4);
+        gap: var(--space-1);
+        order: 3;
+    }
+
+    /* Show collapse when checkbox is checked */
+    .navbar-toggle-input:checked~.navbar-inner .navbar-collapse {
+        display: flex;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+    }
+
+    .nav-link {
+        padding: var(--space-2-5) var(--space-3);
+        border-radius: var(--radius-lg);
+    }
+
+    .navbar-actions {
+        margin-left: 0;
+        flex-wrap: wrap;
+        padding-top: var(--space-3);
+        border-top: 1px solid var(--color-border);
+        width: 100%;
+    }
+
+    .nav-dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: var(--color-bg-subtle);
+        border-radius: var(--radius-lg);
+        margin-top: var(--space-1);
+        pointer-events: auto;
+        display: none;
+    }
+
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+        display: block;
+    }
+}
+
+/* =========================================================
+ * BREADCRUMB
+ * ========================================================= */
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: '/';
+    color: var(--color-text-subtle);
+}
+
+.breadcrumb-item a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-150) var(--ease-in-out);
+}
+
+.breadcrumb-item a:hover {
+    color: var(--color-text);
+}
+
+.breadcrumb-item.active {
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+}
+
+/* =========================================================
+ * TABS
+ * ========================================================= */
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid var(--color-border);
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    transition: color var(--duration-150) var(--ease-in-out),
+        border-color var(--duration-150) var(--ease-in-out);
+}
+
+.tab-link:hover {
+    color: var(--color-text);
+    border-bottom-color: var(--color-border-strong);
+    text-decoration: none;
+}
+
+.tab-link.active,
+.tab-link[aria-selected="true"] {
+    color: var(--color-brand);
+    border-bottom-color: var(--color-brand);
+    font-weight: var(--font-weight-semibold);
+}
+
+.tab-link:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: -2px;
+}

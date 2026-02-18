@@ -1,0 +1,368 @@
+/**
+ * =========================================================
+ * BOAT UI — Typography
+ * =========================================================
+ * Heading scale, body text, prose, code, and link styles.
+ * =========================================================
+ */
+
+/* =========================================================
+ * HEADINGS
+ * ========================================================= */
+
+h1,
+.h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text);
+}
+
+h2,
+.h2 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text);
+}
+
+h3,
+.h3 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+}
+
+h4,
+.h4 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-snug);
+    color: var(--color-text);
+}
+
+h5,
+.h5 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+}
+
+h6,
+.h6 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-normal);
+    color: var(--color-text);
+}
+
+/* =========================================================
+ * BODY TEXT VARIANTS
+ * ========================================================= */
+
+.text-lead {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-muted);
+}
+
+.text-body {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text);
+}
+
+.text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+}
+
+.text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--leading-normal);
+}
+
+.text-muted {
+    color: var(--color-text-muted);
+}
+
+.text-subtle {
+    color: var(--color-text-subtle);
+}
+
+/* =========================================================
+ * DISPLAY TEXT (Hero)
+ * ========================================================= */
+
+.display-1 {
+    font-size: var(--text-6xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: var(--leading-none);
+    letter-spacing: var(--tracking-tight);
+}
+
+.display-2 {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-weight-extrabold);
+    line-height: var(--leading-none);
+    letter-spacing: var(--tracking-tight);
+}
+
+/* =========================================================
+ * INLINE ELEMENTS
+ * ========================================================= */
+
+strong,
+b {
+    font-weight: var(--font-weight-semibold);
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+small {
+    font-size: var(--text-sm);
+}
+
+/* =========================================================
+ * LINKS
+ * ========================================================= */
+
+a {
+    color: var(--color-text-link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: var(--transition-colors);
+}
+
+a:hover {
+    color: var(--color-text-link-hover);
+    text-decoration-thickness: 2px;
+}
+
+/* =========================================================
+ * BLOCKQUOTE
+ * ========================================================= */
+
+blockquote {
+    border-left: 4px solid var(--color-brand);
+    padding: var(--space-4) var(--space-6);
+    margin: var(--space-6) 0;
+    background: var(--color-brand-subtle);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+}
+
+blockquote cite {
+    display: block;
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    font-style: normal;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-subtle);
+}
+
+blockquote cite::before {
+    content: '— ';
+}
+
+/* =========================================================
+ * CODE
+ * ========================================================= */
+
+code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--color-bg-subtle);
+    color: var(--color-danger-600);
+    padding: 0.1em 0.4em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+}
+
+html.dark code,
+@media (prefers-color-scheme: dark) {
+    code {
+        color: var(--color-danger-400);
+    }
+}
+
+pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    background: var(--color-neutral-900);
+    color: var(--color-neutral-100);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    overflow-x: auto;
+    line-height: var(--leading-relaxed);
+    tab-size: 2;
+    border: 1px solid var(--color-neutral-700);
+}
+
+pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    border: none;
+    font-size: inherit;
+    border-radius: 0;
+}
+
+kbd {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding: 0.15em 0.5em;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border-strong);
+    box-shadow: 0 1px 0 var(--color-border-strong);
+    white-space: nowrap;
+}
+
+/* =========================================================
+ * LISTS (styled)
+ * ========================================================= */
+
+.list-disc {
+    list-style: disc;
+    padding-left: var(--space-6);
+}
+
+.list-decimal {
+    list-style: decimal;
+    padding-left: var(--space-6);
+}
+
+.list-disc li,
+.list-decimal li {
+    margin-bottom: var(--space-1);
+    line-height: var(--leading-relaxed);
+}
+
+/* =========================================================
+ * PROSE — Long-form content
+ * ========================================================= */
+
+.prose {
+    max-width: 65ch;
+    color: var(--color-text);
+    line-height: var(--leading-relaxed);
+}
+
+.prose>*+* {
+    margin-top: var(--space-4);
+}
+
+.prose h1 {
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-4);
+}
+
+.prose h2 {
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+}
+
+.prose h3 {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-2);
+}
+
+.prose h4 {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+}
+
+.prose p {
+    margin-bottom: var(--space-4);
+}
+
+.prose ul {
+    list-style: disc;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-4);
+}
+
+.prose ol {
+    list-style: decimal;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-4);
+}
+
+.prose li {
+    margin-bottom: var(--space-1-5);
+}
+
+.prose a {
+    font-weight: var(--font-weight-medium);
+}
+
+.prose blockquote {
+    margin: var(--space-6) 0;
+}
+
+.prose pre {
+    margin: var(--space-6) 0;
+}
+
+.prose hr {
+    margin: var(--space-8) 0;
+}
+
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-6) 0;
+    font-size: var(--text-sm);
+}
+
+.prose th {
+    text-align: left;
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-2) var(--space-4);
+    border-bottom: 2px solid var(--color-border-strong);
+    color: var(--color-text);
+}
+
+.prose td {
+    padding: var(--space-2) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+}
+
+.prose tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================================================
+ * DIVIDER
+ * ========================================================= */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    color: var(--color-text-subtle);
+    font-size: var(--text-sm);
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+}

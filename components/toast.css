@@ -1,0 +1,234 @@
+/**
+ * =========================================================
+ * BOAT UI — Toast
+ * =========================================================
+ *
+ * Usage:
+ *   <div class="toast-region toast-region-top-right" aria-live="polite">
+ *     <div class="toast toast-show toast-success" role="alert">
+ *       <span class="toast-icon">✓</span>
+ *       <div class="toast-body">
+ *         <p class="toast-title">Saved</p>
+ *         <p class="toast-message">Your changes were saved.</p>
+ *       </div>
+ *       <button class="toast-close" aria-label="Dismiss">×</button>
+ *     </div>
+ *   </div>
+ * =========================================================
+ */
+
+.toast-region {
+    position: fixed;
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    pointer-events: none;
+    padding: var(--space-4);
+    max-width: 24rem;
+    width: 100%;
+}
+
+.toast-region-top-right {
+    top: 0;
+    right: 0;
+}
+
+.toast-region-top-left {
+    top: 0;
+    left: 0;
+}
+
+.toast-region-top-center {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.toast-region-bottom-right {
+    bottom: 0;
+    right: 0;
+    flex-direction: column-reverse;
+}
+
+.toast-region-bottom-left {
+    bottom: 0;
+    left: 0;
+    flex-direction: column-reverse;
+}
+
+.toast-region-bottom-center {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column-reverse;
+}
+
+.toast-region:not([class*="toast-region-"]) {
+    top: 0;
+    right: 0;
+}
+
+/* -------------------------------------------------------
+ * Toast item
+ * ------------------------------------------------------- */
+
+.toast {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    pointer-events: auto;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(1rem);
+    transition: opacity var(--duration-300) var(--ease-out),
+        transform var(--duration-300) var(--ease-out);
+}
+
+.toast-show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast-hide {
+    opacity: 0;
+    transform: translateX(1rem);
+}
+
+.toast-region-top-left .toast,
+.toast-region-bottom-left .toast {
+    transform: translateX(-1rem);
+}
+
+.toast-region-top-left .toast-show,
+.toast-region-bottom-left .toast-show {
+    transform: translateX(0);
+}
+
+/* Color variants */
+.toast-success {
+    border-left: 4px solid var(--color-success);
+}
+
+.toast-warning {
+    border-left: 4px solid var(--color-warning);
+}
+
+.toast-danger {
+    border-left: 4px solid var(--color-danger);
+}
+
+.toast-info {
+    border-left: 4px solid var(--color-info);
+}
+
+/* Icon */
+.toast-icon {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-base);
+}
+
+.toast-success .toast-icon {
+    color: var(--color-success);
+}
+
+.toast-warning .toast-icon {
+    color: var(--color-warning);
+}
+
+.toast-danger .toast-icon {
+    color: var(--color-danger);
+}
+
+.toast-info .toast-icon {
+    color: var(--color-info);
+}
+
+/* Body */
+.toast-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.toast-title {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    margin: 0;
+}
+
+.toast-message {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: var(--space-0-5) 0 0;
+    line-height: var(--leading-snug);
+}
+
+/* Close button */
+.toast-close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: var(--text-lg);
+    color: var(--color-text-subtle);
+    background: none;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color var(--duration-150) var(--ease-in-out),
+        background var(--duration-150) var(--ease-in-out);
+}
+
+.toast-close:hover {
+    color: var(--color-text);
+    background: var(--color-bg-subtle);
+}
+
+.toast-close:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+}
+
+/* Progress bar */
+.toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--color-brand);
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+    animation: toast-progress linear forwards;
+}
+
+@keyframes toast-progress {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .toast {
+        transition: opacity var(--duration-150) var(--ease-out);
+        transform: none !important;
+    }
+}

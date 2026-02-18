@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="BOAT UI — A production-ready, ultra-lightweight semantic HTML/CSS component library. Zero JavaScript, zero dependencies.">
+  <title>BOAT UI — Semantic Component Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* Demo-specific styles */
+    .demo-section {
+      padding: var(--space-16) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .demo-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .demo-section-title {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+
+    .demo-section-desc {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-8);
+      font-size: var(--text-sm);
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .demo-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .color-swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .color-swatch-box {
+      width: 4rem;
+      height: 4rem;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .color-swatch-label {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg,
+          var(--color-primary-600) 0%,
+          var(--color-primary-400) 50%,
+          #818cf8 100%);
+    }
+
+    .code-tag {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      background: var(--color-bg-subtle);
+      color: var(--color-text-muted);
+      padding: var(--space-0-5) var(--space-2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Skip to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+
+  <!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+  <header class="navbar navbar-sticky" role="banner">
+    <nav class="navbar-inner container" aria-label="Main navigation">
+      <a href="#" class="navbar-brand">
+        ⛵ BOAT UI
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="navbar-toggle-input" aria-hidden="true">
+      <label for="nav-toggle" class="navbar-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="navbar-toggle-bar"></span>
+        <span class="navbar-toggle-bar"></span>
+        <span class="navbar-toggle-bar"></span>
+      </label>
+
+      <div class="navbar-collapse">
+        <ul class="navbar-nav" role="list">
+          <li><a href="#tokens" class="nav-link">Tokens</a></li>
+          <li><a href="#typography" class="nav-link">Typography</a></li>
+          <li><a href="#buttons" class="nav-link">Buttons</a></li>
+          <li><a href="#forms" class="nav-link">Forms</a></li>
+          <li>
+            <div class="nav-dropdown">
+              <a href="#" class="nav-link nav-dropdown-toggle">Components</a>
+              <ul class="nav-dropdown-menu" role="list">
+                <li><a href="#accordion" class="nav-dropdown-item">Accordion</a></li>
+                <li><a href="#alerts" class="nav-dropdown-item">Alerts</a></li>
+                <li><a href="#badges" class="nav-dropdown-item">Badges</a></li>
+                <li><a href="#cards" class="nav-dropdown-item">Cards</a></li>
+                <li><a href="#dropdown" class="nav-dropdown-item">Dropdown</a></li>
+                <li><a href="#grid" class="nav-dropdown-item">Grid</a></li>
+                <li><a href="#modals" class="nav-dropdown-item">Modals</a></li>
+                <li><a href="#progress" class="nav-dropdown-item">Progress</a></li>
+                <li><a href="#sidebar" class="nav-dropdown-item">Sidebar</a></li>
+                <li><a href="#skeleton" class="nav-dropdown-item">Skeleton</a></li>
+                <li><a href="#spinner" class="nav-dropdown-item">Spinner</a></li>
+                <li><a href="#table" class="nav-dropdown-item">Table</a></li>
+                <li><a href="#tabs" class="nav-dropdown-item">Tabs</a></li>
+                <li><a href="#toast" class="nav-dropdown-item">Toast</a></li>
+                <li><a href="#tooltip" class="nav-dropdown-item">Tooltip</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <div class="navbar-actions">
+          <a href="docs/getting-started.md" class="btn btn-secondary btn-sm">Docs</a>
+          <a href="#" class="btn btn-primary btn-sm">GitHub</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =====================================================
+     MAIN CONTENT
+     ===================================================== -->
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero-gradient py-24" aria-labelledby="hero-heading">
+      <div class="container content-center" style="gap: var(--space-6);">
+        <div class="d-flex gap-2" style="justify-content: center; flex-wrap: wrap;">
+          <span class="badge badge-pill"
+            style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">Zero
+            JavaScript</span>
+          <span class="badge badge-pill"
+            style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">Zero
+            Dependencies</span>
+          <span class="badge badge-pill"
+            style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3);">Accessible</span>
+        </div>
+        <h1 id="hero-heading" class="display-1 text-center" style="color: white; max-width: 16ch;">
+          Beautiful UI, Pure CSS
+        </h1>
+        <p class="text-lead text-center" style="color: rgba(255,255,255,0.85); max-width: 48ch;">
+          BOAT UI is a production-ready, ultra-lightweight semantic component library.
+          No build step. No JavaScript. Just drop in the CSS and go.
+        </p>
+        <div class="demo-row" style="justify-content: center; margin-bottom: 0;">
+          <a href="#buttons" class="btn btn-lg"
+            style="background: white; color: var(--color-primary-700); border-color: white;">
+            Explore Components
+          </a>
+          <a href="docs/getting-started.md" class="btn btn-lg btn-outline"
+            style="color: white; border-color: rgba(255,255,255,0.5);">
+            Get Started →
+          </a>
+        </div>
+        <code class="code-tag"
+          style="background: rgba(0,0,0,0.2); color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.2);">
+        &lt;link rel="stylesheet" href="index.css"&gt;
+      </code>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       DESIGN TOKENS
+       ===================================================== -->
+    <section id="tokens" class="demo-section" aria-labelledby="tokens-heading">
+      <div class="container">
+        <h2 id="tokens-heading" class="demo-section-title">Design Tokens</h2>
+        <p class="demo-section-desc">CSS custom properties for colors, spacing, typography, and more. Override any token
+          to customize the entire system.</p>
+
+        <h3 class="h5 mb-4">Color Palette</h3>
+        <div class="demo-row" style="flex-wrap: wrap; align-items: flex-start; gap: var(--space-6);">
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-primary-600);"></div>
+            <span class="color-swatch-label">Primary<br>600</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-primary-400);"></div>
+            <span class="color-swatch-label">Primary<br>400</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-primary-100);"></div>
+            <span class="color-swatch-label">Primary<br>100</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-success-600);"></div>
+            <span class="color-swatch-label">Success<br>600</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-warning-500);"></div>
+            <span class="color-swatch-label">Warning<br>500</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-danger-600);"></div>
+            <span class="color-swatch-label">Danger<br>600</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-info-600);"></div>
+            <span class="color-swatch-label">Info<br>600</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-neutral-900);"></div>
+            <span class="color-swatch-label">Neutral<br>900</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-neutral-500);"></div>
+            <span class="color-swatch-label">Neutral<br>500</span>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-box" style="background: var(--color-neutral-100);"></div>
+            <span class="color-swatch-label">Neutral<br>100</span>
+          </div>
+        </div>
+
+        <h3 class="h5 mt-8 mb-4">Semantic Tokens</h3>
+        <div class="grid-3" style="gap: var(--space-3);">
+          <div class="card card-flat border p-4">
+            <code class="code-tag">--color-bg</code>
+            <p class="text-xs text-muted mt-2">Page background</p>
+          </div>
+          <div class="card card-flat border p-4">
+            <code class="code-tag">--color-surface</code>
+            <p class="text-xs text-muted mt-2">Card/panel surface</p>
+          </div>
+          <div class="card card-flat border p-4">
+            <code class="code-tag">--color-brand</code>
+            <p class="text-xs text-muted mt-2">Primary brand color</p>
+          </div>
+          <div class="card card-flat border p-4">
+            <code class="code-tag">--color-text</code>
+            <p class="text-xs text-muted mt-2">Body text</p>
+          </div>
+          <div class="card card-flat border p-4">
+            <code class="code-tag">--color-border</code>
+            <p class="text-xs text-muted mt-2">Default border</p>
+          </div>
+          <div class="card card-flat border p-4">
+            <code class="code-tag">--space-4</code>
+            <p class="text-xs text-muted mt-2">1rem / 16px spacing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       TYPOGRAPHY
+       ===================================================== -->
+    <section id="typography" class="demo-section" aria-labelledby="typography-heading">
+      <div class="container">
+        <h2 id="typography-heading" class="demo-section-title">Typography</h2>
+        <p class="demo-section-desc">A fluid type scale built on CSS custom properties. Uses Inter from Google Fonts.
+        </p>
+
+        <div class="stack-6">
+          <div>
+            <p class="text-xs text-muted mb-2">display-1 — 3.75rem / 800</p>
+            <p class="display-1">The quick brown fox</p>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">h1 — 2.25rem / 800</p>
+            <h1>Heading Level One</h1>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">h2 — 1.875rem / 700</p>
+            <h2>Heading Level Two</h2>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">h3 — 1.5rem / 700</p>
+            <h3>Heading Level Three</h3>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">h4 — 1.25rem / 600</p>
+            <h4>Heading Level Four</h4>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">text-lead — 1.125rem</p>
+            <p class="text-lead">Lead paragraph text for introductions and summaries. Slightly larger and muted.</p>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">body — 1rem</p>
+            <p>Regular body text. The quick brown fox jumps over the lazy dog. Packed with <strong>bold</strong>,
+              <em>italic</em>, and <a href="#">linked</a> content.
+            </p>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">blockquote</p>
+            <blockquote>
+              "Design is not just what it looks like and feels like. Design is how it works."
+              <cite>Steve Jobs</cite>
+            </blockquote>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">code & kbd</p>
+            <p>Use <code>--color-brand</code> to set the primary color. Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to open
+              search.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       BUTTONS
+       ===================================================== -->
+    <section id="buttons" class="demo-section" aria-labelledby="buttons-heading">
+      <div class="container">
+        <h2 id="buttons-heading" class="demo-section-title">Buttons</h2>
+        <p class="demo-section-desc">Semantic button elements with variants, sizes, states, and groups.</p>
+
+        <h3 class="h6 text-muted mb-3 uppercase tracking-wider">Variants</h3>
+        <div class="demo-row">
+          <button type="button" class="btn btn-primary">Primary</button>
+          <button type="button" class="btn btn-secondary">Secondary</button>
+          <button type="button" class="btn btn-ghost">Ghost</button>
+          <button type="button" class="btn btn-outline">Outline</button>
+          <button type="button" class="btn btn-danger">Danger</button>
+          <button type="button" class="btn btn-success">Success</button>
+          <button type="button" class="btn btn-link">Link</button>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">Sizes</h3>
+        <div class="demo-row" style="align-items: flex-end;">
+          <button type="button" class="btn btn-primary btn-xs">Extra Small</button>
+          <button type="button" class="btn btn-primary btn-sm">Small</button>
+          <button type="button" class="btn btn-primary">Medium</button>
+          <button type="button" class="btn btn-primary btn-lg">Large</button>
+          <button type="button" class="btn btn-primary btn-xl">Extra Large</button>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">States</h3>
+        <div class="demo-row">
+          <button type="button" class="btn btn-primary">Normal</button>
+          <button type="button" class="btn btn-primary btn-loading" aria-label="Loading">Loading</button>
+          <button type="button" class="btn btn-primary" disabled>Disabled</button>
+          <button type="button" class="btn btn-icon btn-secondary" aria-label="Settings">⚙</button>
+          <button type="button" class="btn btn-icon btn-primary" aria-label="Add">+</button>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">Button Group</h3>
+        <div class="demo-row">
+          <div class="btn-group" role="group" aria-label="Text alignment">
+            <button type="button" class="btn btn-secondary">Left</button>
+            <button type="button" class="btn btn-secondary">Center</button>
+            <button type="button" class="btn btn-secondary">Right</button>
+          </div>
+          <div class="btn-group" role="group" aria-label="Actions">
+            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary">▾</button>
+          </div>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">Block Button</h3>
+        <div style="max-width: 24rem;">
+          <button type="button" class="btn btn-primary btn-block btn-lg">Full Width Button</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       FORMS
+       ===================================================== -->
+    <section id="forms" class="demo-section" aria-labelledby="forms-heading">
+      <div class="container">
+        <h2 id="forms-heading" class="demo-section-title">Forms</h2>
+        <p class="demo-section-desc">Accessible form controls with validation states, custom checkboxes, and layout
+          helpers.</p>
+
+        <div class="grid-2" style="gap: var(--space-10);">
+          <!-- Login form -->
+          <div>
+            <h3 class="h5 mb-6">Login Form</h3>
+            <form novalidate>
+              <div class="form-group">
+                <label class="form-label required" for="email">Email address</label>
+                <input type="email" id="email" class="form-control" placeholder="you@example.com" autocomplete="email">
+                <span class="form-hint">We'll never share your email.</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label required" for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••"
+                  autocomplete="current-password">
+              </div>
+              <div class="form-group">
+                <label class="form-check">
+                  <input type="checkbox" class="form-check-input" id="remember">
+                  <span class="form-check-label">Remember me for 30 days</span>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+            </form>
+          </div>
+
+          <!-- Validation states & controls -->
+          <div>
+            <h3 class="h5 mb-6">Validation & Controls</h3>
+            <div class="form-group">
+              <label class="form-label" for="valid-input">Valid input</label>
+              <input type="text" id="valid-input" class="form-control is-valid" value="john@example.com">
+              <span class="form-success-msg">Looks good!</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="invalid-input">Invalid input</label>
+              <input type="text" id="invalid-input" class="form-control is-invalid" value="not-an-email">
+              <span class="form-error">Please enter a valid email address.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="country">Country</label>
+              <select id="country" class="form-select">
+                <option value="">Select a country…</option>
+                <option value="us">United States</option>
+                <option value="uk">United Kingdom</option>
+                <option value="ca">Canada</option>
+                <option value="au">Australia</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bio">Bio</label>
+              <textarea id="bio" class="form-control" rows="3" placeholder="Tell us about yourself…"></textarea>
+            </div>
+            <div class="form-group">
+              <p class="form-label mb-2">Notifications</p>
+              <label class="form-switch">
+                <input type="checkbox" class="form-switch-input" id="email-notif" checked>
+                <span class="form-check-label">Email notifications</span>
+              </label>
+              <label class="form-switch mt-2">
+                <input type="checkbox" class="form-switch-input" id="sms-notif">
+                <span class="form-check-label">SMS notifications</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input group -->
+        <h3 class="h5 mt-8 mb-4">Input Groups</h3>
+        <div class="stack-4" style="max-width: 32rem;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="search">Search</label>
+            <div class="input-group">
+              <span class="input-group-text">🔍</span>
+              <input type="search" id="search" class="form-control" placeholder="Search components…">
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="website">Website</label>
+            <div class="input-group">
+              <span class="input-group-text">https://</span>
+              <input type="text" id="website" class="form-control" placeholder="yoursite.com">
+              <button type="button" class="btn btn-primary">Go</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Radio group -->
+        <h3 class="h5 mt-8 mb-4">Radio Group</h3>
+        <fieldset class="fieldset" style="max-width: 24rem;">
+          <legend class="legend">Subscription plan</legend>
+          <div class="stack-3 mt-4">
+            <label class="form-check">
+              <input type="radio" name="plan" class="form-check-input" value="free" checked>
+              <span class="form-check-label">Free — $0/month</span>
+            </label>
+            <label class="form-check">
+              <input type="radio" name="plan" class="form-check-input" value="pro">
+              <span class="form-check-label">Pro — $12/month</span>
+            </label>
+            <label class="form-check">
+              <input type="radio" name="plan" class="form-check-input" value="enterprise">
+              <span class="form-check-label">Enterprise — Custom pricing</span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       CARDS
+       ===================================================== -->
+    <section id="cards" class="demo-section" aria-labelledby="cards-heading">
+      <div class="container">
+        <h2 id="cards-heading" class="demo-section-title">Cards</h2>
+        <p class="demo-section-desc">Flexible content containers with header, body, footer, and image support.</p>
+
+        <div class="card-group">
+          <!-- Basic card -->
+          <article class="card">
+            <div class="card-header">
+              <h3 class="card-title">Basic Card</h3>
+              <span class="badge badge-primary badge-pill">New</span>
+            </div>
+            <div class="card-body">
+              <p class="text-sm text-muted">A simple card with header, body, and footer sections. Perfect for displaying
+                grouped content.</p>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-primary btn-sm">Action</button>
+              <button type="button" class="btn btn-ghost btn-sm">Cancel</button>
+            </div>
+          </article>
+
+          <!-- Interactive card -->
+          <a href="#cards" class="card card-interactive">
+            <div class="card-body">
+              <div class="d-flex items-center gap-3 mb-4">
+                <div class="card-avatar-placeholder" style="width: 3rem; height: 3rem; font-size: var(--text-lg);">🚀
+                </div>
+                <div>
+                  <h3 class="card-title">Interactive Card</h3>
+                  <p class="card-subtitle">Hover to see lift effect</p>
+                </div>
+              </div>
+              <p class="text-sm text-muted">This card is a link — it lifts on hover and has a focus ring for keyboard
+                navigation.</p>
+            </div>
+          </a>
+
+          <!-- Stat card -->
+          <article class="card">
+            <div class="card-stat">
+              <span class="card-stat-label">Monthly Revenue</span>
+              <span class="card-stat-value">$48,295</span>
+              <span class="card-stat-change positive">12.5% from last month</span>
+            </div>
+          </article>
+
+          <!-- Accent card -->
+          <article class="card card-primary">
+            <div class="card-body">
+              <h3 class="card-title mb-2">Accent Card</h3>
+              <p class="text-sm text-muted">Cards can have a colored top border to indicate status or category.</p>
+            </div>
+          </article>
+
+          <!-- Filled card -->
+          <article class="card card-filled">
+            <div class="card-body">
+              <h3 class="card-title mb-2">Filled Card</h3>
+              <p class="text-sm text-muted">A subtle background fill instead of a border. Great for secondary content
+                areas.</p>
+            </div>
+          </article>
+
+          <!-- Elevated card -->
+          <article class="card card-elevated">
+            <div class="card-body">
+              <h3 class="card-title mb-2">Elevated Card</h3>
+              <p class="text-sm text-muted">Larger shadow, no border. Creates a floating effect for featured content.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       ALERTS
+       ===================================================== -->
+    <section id="alerts" class="demo-section" aria-labelledby="alerts-heading">
+      <div class="container">
+        <h2 id="alerts-heading" class="demo-section-title">Alerts</h2>
+        <p class="demo-section-desc">Contextual feedback messages. Use <code>role="alert"</code> for live regions.</p>
+
+        <div class="stack-4" style="max-width: 48rem;">
+          <div class="alert alert-info" role="note">
+            <span class="alert-icon">ℹ</span>
+            <div class="alert-content">
+              <p class="alert-title">Information</p>
+              <p>Your account is set to read-only mode. <a href="#">Learn more about permissions.</a></p>
+            </div>
+          </div>
+
+          <div class="alert alert-success" role="status">
+            <span class="alert-icon">✓</span>
+            <div class="alert-content">
+              <p class="alert-title">Success!</p>
+              <p>Your profile has been updated successfully. Changes will take effect immediately.</p>
+            </div>
+          </div>
+
+          <div class="alert alert-warning" role="alert">
+            <span class="alert-icon">⚠</span>
+            <div class="alert-content">
+              <p class="alert-title">Warning</p>
+              <p>Your subscription expires in 3 days. <a href="#">Renew now</a> to avoid service interruption.</p>
+            </div>
+          </div>
+
+          <div class="alert alert-danger" role="alert">
+            <span class="alert-icon">✕</span>
+            <div class="alert-content">
+              <p class="alert-title">Error</p>
+              <p>Failed to save changes. Please check your connection and try again.</p>
+            </div>
+          </div>
+
+          <!-- Dismissible alert -->
+          <div class="alert alert-info alert-dismissible" role="note">
+            <input type="checkbox" id="dismiss-demo" class="alert-dismiss-input">
+            <span class="alert-icon">ℹ</span>
+            <div class="alert-content">
+              <p class="alert-title">Dismissible Alert</p>
+              <p>Click the × button to dismiss this alert. No JavaScript required!</p>
+            </div>
+            <label for="dismiss-demo" class="alert-dismiss-btn" aria-label="Dismiss alert">✕</label>
+          </div>
+
+          <!-- Accent alert -->
+          <div class="alert alert-success alert-accent" role="status">
+            <span class="alert-icon">✓</span>
+            <div class="alert-content">
+              <p>Accent-style alert with a bold left border for emphasis.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner alert -->
+        <div class="alert alert-warning alert-banner mt-8" role="alert"
+          style="margin-left: calc(var(--space-4) * -1); margin-right: calc(var(--space-4) * -1);">
+          ⚠ <strong>Maintenance scheduled</strong> — The service will be unavailable on Sunday, Feb 23 from 2–4 AM UTC.
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       BADGES
+       ===================================================== -->
+    <section id="badges" class="demo-section" aria-labelledby="badges-heading">
+      <div class="container">
+        <h2 id="badges-heading" class="demo-section-title">Badges</h2>
+        <p class="demo-section-desc">Inline labels, status indicators, and notification counters.</p>
+
+        <h3 class="h6 text-muted mb-3 uppercase tracking-wider">Variants</h3>
+        <div class="demo-row">
+          <span class="badge badge-primary">Primary</span>
+          <span class="badge badge-success">Success</span>
+          <span class="badge badge-warning">Warning</span>
+          <span class="badge badge-danger">Danger</span>
+          <span class="badge badge-info">Info</span>
+          <span class="badge badge-neutral">Neutral</span>
+          <span class="badge badge-secondary">Secondary</span>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">Solid Variants</h3>
+        <div class="demo-row">
+          <span class="badge badge-solid-primary">Primary</span>
+          <span class="badge badge-solid-success">Success</span>
+          <span class="badge badge-solid-warning">Warning</span>
+          <span class="badge badge-solid-danger">Danger</span>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">Pills & Outline</h3>
+        <div class="demo-row">
+          <span class="badge badge-pill badge-primary">New</span>
+          <span class="badge badge-pill badge-success">Active</span>
+          <span class="badge badge-pill badge-danger">12</span>
+          <span class="badge badge-outline badge-primary">Outline</span>
+          <span class="badge badge-outline badge-danger">Error</span>
+          <span class="badge badge-lg badge-primary">Large Badge</span>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">Status Dots</h3>
+        <div class="demo-row">
+          <span class="d-flex items-center gap-2 text-sm">
+            <span class="badge-dot badge-dot-success badge-dot-pulse"></span> Online
+          </span>
+          <span class="d-flex items-center gap-2 text-sm">
+            <span class="badge-dot badge-dot-warning"></span> Away
+          </span>
+          <span class="d-flex items-center gap-2 text-sm">
+            <span class="badge-dot badge-dot-danger"></span> Busy
+          </span>
+          <span class="d-flex items-center gap-2 text-sm">
+            <span class="badge-dot badge-dot-neutral"></span> Offline
+          </span>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">Notification Badge</h3>
+        <div class="demo-row">
+          <div class="badge-container">
+            <button type="button" class="btn btn-secondary btn-icon" aria-label="Notifications">🔔</button>
+            <span class="badge-notification badge-solid-danger">3</span>
+          </div>
+          <div class="badge-container">
+            <button type="button" class="btn btn-secondary btn-icon" aria-label="Messages">✉</button>
+            <span class="badge-notification badge-solid-primary">12</span>
+          </div>
+          <div class="badge-container">
+            <button type="button" class="btn btn-secondary btn-icon" aria-label="Cart">🛒</button>
+            <span class="badge-notification badge-solid-success">99+</span>
+          </div>
+        </div>
+
+        <h3 class="h6 text-muted mb-3 mt-6 uppercase tracking-wider">In Context</h3>
+        <div class="stack-3" style="max-width: 32rem;">
+          <div class="d-flex items-center justify-between p-3 border rounded-lg">
+            <span class="text-sm font-medium">Feature Flags</span>
+            <span class="badge badge-pill badge-success">Enabled</span>
+          </div>
+          <div class="d-flex items-center justify-between p-3 border rounded-lg">
+            <span class="text-sm font-medium">API Rate Limiting</span>
+            <span class="badge badge-pill badge-warning">Beta</span>
+          </div>
+          <div class="d-flex items-center justify-between p-3 border rounded-lg">
+            <span class="text-sm font-medium">Legacy Endpoints</span>
+            <span class="badge badge-pill badge-danger">Deprecated</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       MODALS
+       ===================================================== -->
+    <section id="modals" class="demo-section" aria-labelledby="modals-heading">
+      <div class="container">
+        <h2 id="modals-heading" class="demo-section-title">Modals</h2>
+        <p class="demo-section-desc">CSS-only dialogs using the <code>:target</code> pseudo-class. No JavaScript
+          required.</p>
+
+        <div class="demo-row">
+          <a href="#modal-basic" class="btn btn-primary" id="open-modal-basic">Open Modal</a>
+          <a href="#modal-confirm" class="btn btn-danger" id="open-modal-confirm">Confirm Dialog</a>
+          <a href="#modal-lg" class="btn btn-secondary" id="open-modal-lg">Large Modal</a>
+          <a href="#modal-drawer" class="btn btn-outline" id="open-modal-drawer">Side Drawer</a>
+        </div>
+
+        <div class="alert alert-info mt-6" role="note" style="max-width: 48rem;">
+          <span class="alert-icon">ℹ</span>
+          <div class="alert-content">
+            <p class="alert-title">Accessibility Note</p>
+            <p>CSS-only modals work for visual users. For full WCAG compliance, add a small JS snippet to manage focus
+              trapping and <code>aria-hidden</code> on the background content. See <a
+                href="docs/components.md">docs/components.md</a> for details.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       GRID
+       ===================================================== -->
+    <section id="grid" class="demo-section" aria-labelledby="grid-heading">
+      <div class="container">
+        <h2 id="grid-heading" class="demo-section-title">Grid & Layout</h2>
+        <p class="demo-section-desc">12-column flexbox grid with responsive breakpoints, plus CSS Grid auto-fill
+          layouts.</p>
+
+        <h3 class="h5 mb-4">12-Column Grid</h3>
+        <div class="row mb-4" style="gap: var(--space-2) 0;">
+          <div class="col-12">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-12</div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-6</div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-6</div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-4</div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-4</div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-4</div>
+          </div>
+          <div class="col-3">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-3</div>
+          </div>
+          <div class="col-3">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-3</div>
+          </div>
+          <div class="col-3">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-3</div>
+          </div>
+          <div class="col-3">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-3</div>
+          </div>
+          <div class="col-8">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-8</div>
+          </div>
+          <div class="col-4">
+            <div class="p-3 bg-subtle border rounded text-center text-sm font-medium">col-4</div>
+          </div>
+        </div>
+
+        <h3 class="h5 mb-4 mt-8">CSS Grid Auto-Fill</h3>
+        <div class="grid-auto-sm">
+          <div class="card card-flat border p-4 text-center">
+            <div style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">🎨</div>
+            <h4 class="h6">Design Tokens</h4>
+            <p class="text-xs text-muted mt-1">CSS custom properties</p>
+          </div>
+          <div class="card card-flat border p-4 text-center">
+            <div style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">♿</div>
+            <h4 class="h6">Accessible</h4>
+            <p class="text-xs text-muted mt-1">ARIA roles & keyboard nav</p>
+          </div>
+          <div class="card card-flat border p-4 text-center">
+            <div style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">📱</div>
+            <h4 class="h6">Responsive</h4>
+            <p class="text-xs text-muted mt-1">Mobile-first breakpoints</p>
+          </div>
+          <div class="card card-flat border p-4 text-center">
+            <div style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">🌙</div>
+            <h4 class="h6">Dark Mode</h4>
+            <p class="text-xs text-muted mt-1">System & manual toggle</p>
+          </div>
+          <div class="card card-flat border p-4 text-center">
+            <div style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">⚡</div>
+            <h4 class="h6">Lightweight</h4>
+            <p class="text-xs text-muted mt-1">Minimal CSS footprint</p>
+          </div>
+          <div class="card card-flat border p-4 text-center">
+            <div style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">🔧</div>
+            <h4 class="h6">Customizable</h4>
+            <p class="text-xs text-muted mt-1">Override any CSS variable</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       NAVIGATION PATTERNS
+       ===================================================== -->
+    <section class="demo-section" aria-labelledby="nav-patterns-heading">
+      <div class="container">
+        <h2 id="nav-patterns-heading" class="demo-section-title">Navigation Patterns</h2>
+        <p class="demo-section-desc">Breadcrumbs, tabs, and other navigation components.</p>
+
+        <h3 class="h5 mb-4">Breadcrumb</h3>
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Components</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Navigation</li>
+          </ol>
+        </nav>
+
+        <h3 class="h5 mb-4 mt-8">Tabs</h3>
+        <nav class="tabs" role="tablist" aria-label="Component tabs">
+          <a href="#" class="tab-link active" role="tab" aria-selected="true">Overview</a>
+          <a href="#" class="tab-link" role="tab" aria-selected="false">Usage</a>
+          <a href="#" class="tab-link" role="tab" aria-selected="false">API Reference</a>
+          <a href="#" class="tab-link" role="tab" aria-selected="false">Changelog</a>
+        </nav>
+        <div class="p-6 border border-t-0 rounded-b-xl bg-surface">
+          <p class="text-sm text-muted">Tab panel content goes here. Use <code>aria-selected</code> and
+            <code>role="tab"</code> for accessibility.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       ACCORDION
+       ===================================================== -->
+    <section id="accordion" class="demo-section" aria-labelledby="accordion-heading">
+      <div class="container">
+        <h2 id="accordion-heading" class="demo-section-title">Accordion</h2>
+        <p class="demo-section-desc">CSS-only collapsible panels using native <code>&lt;details&gt;</code> and
+          <code>&lt;summary&gt;</code>. No JavaScript required.</p>
+
+        <h3 class="h5 mb-4">Default</h3>
+        <div class="accordion" style="max-width:42rem">
+          <details class="accordion-item" open>
+            <summary class="accordion-trigger">What is BOAT UI?</summary>
+            <div class="accordion-content">
+              BOAT UI is a production-ready, ultra-lightweight semantic HTML/CSS component library. Zero JavaScript,
+              zero dependencies — just drop in the CSS and go.
+            </div>
+          </details>
+          <details class="accordion-item">
+            <summary class="accordion-trigger">How do I install it?</summary>
+            <div class="accordion-content">
+              Copy the files to your project and add <code>&lt;link rel="stylesheet" href="index.css"&gt;</code> to your
+              HTML. That's it — no npm, no build step.
+            </div>
+          </details>
+          <details class="accordion-item">
+            <summary class="accordion-trigger">Does it support dark mode?</summary>
+            <div class="accordion-content">
+              Yes. Override the CSS custom properties in <code>tokens.css</code> to create any theme. All semantic color
+              tokens update automatically across every component.
+            </div>
+          </details>
+        </div>
+
+        <h3 class="h5 mb-4 mt-10">Separated variant</h3>
+        <div class="accordion accordion-separated" style="max-width:42rem">
+          <details class="accordion-item">
+            <summary class="accordion-trigger">Shipping &amp; Delivery</summary>
+            <div class="accordion-content">Orders are processed within 1–2 business days. Standard shipping takes 5–7
+              days.</div>
+          </details>
+          <details class="accordion-item">
+            <summary class="accordion-trigger">Returns &amp; Refunds</summary>
+            <div class="accordion-content">We accept returns within 30 days of purchase. Items must be unused and in
+              original packaging.</div>
+          </details>
+          <details class="accordion-item">
+            <summary class="accordion-trigger">Payment Methods</summary>
+            <div class="accordion-content">We accept all major credit cards, PayPal, and bank transfers.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       DROPDOWN
+       ===================================================== -->
+    <section id="dropdown" class="demo-section" aria-labelledby="dropdown-heading">
+      <div class="container">
+        <h2 id="dropdown-heading" class="demo-section-title">Dropdown</h2>
+        <p class="demo-section-desc">CSS-only dropdown menus using <code>:focus-within</code>. No JavaScript required.
+        </p>
+
+        <div class="demo-row" style="align-items:flex-start; gap: var(--space-6)">
+          <!-- Basic -->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button">Options</button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#" class="dropdown-item" role="menuitem">Edit</a></li>
+              <li><a href="#" class="dropdown-item" role="menuitem">Duplicate</a></li>
+              <li><a href="#" class="dropdown-item" role="menuitem">Archive</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a href="#" class="dropdown-item dropdown-item-danger" role="menuitem">Delete</a></li>
+            </ul>
+          </div>
+
+          <!-- With header -->
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button">Account</button>
+            <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-header">Signed in as</li>
+              <li><a href="#" class="dropdown-item" role="menuitem">Profile</a></li>
+              <li><a href="#" class="dropdown-item" role="menuitem">Settings</a></li>
+              <li><a href="#" class="dropdown-item" role="menuitem">Billing</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a href="#" class="dropdown-item" role="menuitem">Sign out</a></li>
+            </ul>
+          </div>
+
+          <!-- End-aligned -->
+          <div class="dropdown">
+            <button class="btn btn-outline dropdown-toggle" type="button">Align End</button>
+            <ul class="dropdown-menu dropdown-menu-end" role="menu">
+              <li><a href="#" class="dropdown-item" role="menuitem">Export CSV</a></li>
+              <li><a href="#" class="dropdown-item" role="menuitem">Export PDF</a></li>
+              <li><a href="#" class="dropdown-item" role="menuitem">Print</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       PROGRESS
+       ===================================================== -->
+    <section id="progress" class="demo-section" aria-labelledby="progress-heading">
+      <div class="container">
+        <h2 id="progress-heading" class="demo-section-title">Progress</h2>
+        <p class="demo-section-desc">Progress bars and circular indicators for showing task completion.</p>
+
+        <h3 class="h5 mb-4">Bar variants</h3>
+        <div style="max-width:42rem; display:flex; flex-direction:column; gap:var(--space-4)">
+          <div>
+            <p class="text-xs text-muted mb-2">Default — 60%</p>
+            <div class="progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width:60%"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">Success — 80%</p>
+            <div class="progress progress-lg">
+              <div class="progress-bar progress-bar-success" style="width:80%"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">Warning — 45%</p>
+            <div class="progress progress-lg">
+              <div class="progress-bar progress-bar-warning" style="width:45%"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">Danger — 25%</p>
+            <div class="progress progress-lg">
+              <div class="progress-bar progress-bar-danger" style="width:25%"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">Striped &amp; animated</p>
+            <div class="progress progress-lg">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:70%"></div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-muted mb-2">Indeterminate</p>
+            <div class="progress progress-lg" style="overflow:hidden">
+              <div class="progress-bar progress-bar-indeterminate"></div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="h5 mb-4 mt-10">Circular progress</h3>
+        <div class="demo-row">
+          <div class="progress-circle" style="--progress:75">
+            <span class="progress-circle-label">75%</span>
+          </div>
+          <div class="progress-circle progress-circle-success" style="--progress:90">
+            <span class="progress-circle-label">90%</span>
+          </div>
+          <div class="progress-circle progress-circle-warning" style="--progress:40">
+            <span class="progress-circle-label">40%</span>
+          </div>
+          <div class="progress-circle progress-circle-danger" style="--progress:20">
+            <span class="progress-circle-label">20%</span>
+          </div>
+          <div class="progress-circle progress-circle-lg" style="--progress:65">
+            <span class="progress-circle-label">65%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       SKELETON
+       ===================================================== -->
+    <section id="skeleton" class="demo-section" aria-labelledby="skeleton-heading">
+      <div class="container">
+        <h2 id="skeleton-heading" class="demo-section-title">Skeleton</h2>
+        <p class="demo-section-desc">Shimmer loading placeholders to show while content is fetching.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:var(--space-6)">
+          <!-- Card skeleton -->
+          <div class="skeleton-card">
+            <div class="skeleton skeleton-rect" style="height:10rem"></div>
+            <div class="skeleton-body">
+              <div class="skeleton skeleton-text skeleton-text-lg" style="width:70%"></div>
+              <div class="skeleton skeleton-text"></div>
+              <div class="skeleton skeleton-text" style="width:80%"></div>
+              <div class="skeleton skeleton-text" style="width:55%"></div>
+            </div>
+          </div>
+
+          <!-- List skeleton -->
+          <div class="card">
+            <div class="card-body">
+              <div class="skeleton skeleton-text skeleton-text-lg mb-4" style="width:50%"></div>
+              <div class="skeleton-list-item">
+                <div class="skeleton skeleton-circle" style="width:2.5rem;height:2.5rem"></div>
+                <div style="flex:1">
+                  <div class="skeleton skeleton-text" style="width:60%;margin-bottom:var(--space-2)"></div>
+                  <div class="skeleton skeleton-text skeleton-text-sm" style="width:40%"></div>
+                </div>
+              </div>
+              <div class="skeleton-list-item">
+                <div class="skeleton skeleton-circle" style="width:2.5rem;height:2.5rem"></div>
+                <div style="flex:1">
+                  <div class="skeleton skeleton-text" style="width:75%;margin-bottom:var(--space-2)"></div>
+                  <div class="skeleton skeleton-text skeleton-text-sm" style="width:50%"></div>
+                </div>
+              </div>
+              <div class="skeleton-list-item">
+                <div class="skeleton skeleton-circle" style="width:2.5rem;height:2.5rem"></div>
+                <div style="flex:1">
+                  <div class="skeleton skeleton-text" style="width:55%;margin-bottom:var(--space-2)"></div>
+                  <div class="skeleton skeleton-text skeleton-text-sm" style="width:35%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       SPINNER
+       ===================================================== -->
+    <section id="spinner" class="demo-section" aria-labelledby="spinner-heading">
+      <div class="container">
+        <h2 id="spinner-heading" class="demo-section-title">Spinner</h2>
+        <p class="demo-section-desc">Loading indicators in ring, grow, and dots styles.</p>
+
+        <h3 class="h5 mb-4">Ring — sizes</h3>
+        <div class="demo-row" style="align-items:center">
+          <span class="spinner spinner-xs" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-sm" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-md" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-lg" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-xl" role="status" aria-label="Loading"></span>
+        </div>
+
+        <h3 class="h5 mb-4 mt-8">Ring — colors</h3>
+        <div class="demo-row" style="align-items:center">
+          <span class="spinner spinner-lg spinner-primary" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-lg spinner-success" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-lg spinner-warning" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-lg spinner-danger" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-lg spinner-info" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner-lg spinner-muted" role="status" aria-label="Loading"></span>
+        </div>
+
+        <h3 class="h5 mb-4 mt-8">Grow &amp; Dots</h3>
+        <div class="demo-row" style="align-items:center">
+          <span class="spinner-grow" role="status" aria-label="Loading"></span>
+          <span class="spinner-grow spinner-grow-success" role="status" aria-label="Loading"></span>
+          <span class="spinner-grow spinner-grow-warning" role="status" aria-label="Loading"></span>
+          <span class="spinner-grow spinner-grow-danger" role="status" aria-label="Loading"></span>
+          <span class="spinner-dots" role="status" aria-label="Loading"><span></span><span></span><span></span></span>
+        </div>
+
+        <h3 class="h5 mb-4 mt-8">Spinner inside button</h3>
+        <div class="demo-row">
+          <button class="btn btn-primary" disabled>
+            <span class="spinner spinner-xs spinner-white" role="status" aria-hidden="true"></span>
+            Saving…
+          </button>
+          <button class="btn btn-secondary" disabled>
+            <span class="spinner spinner-xs" role="status" aria-hidden="true"></span>
+            Loading
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       TABLE
+       ===================================================== -->
+    <section id="table" class="demo-section" aria-labelledby="table-heading">
+      <div class="container">
+        <h2 id="table-heading" class="demo-section-title">Table</h2>
+        <p class="demo-section-desc">Responsive data tables with striped, hover, and bordered variants.</p>
+
+        <h3 class="h5 mb-4">Striped + hover</h3>
+        <div class="table-wrapper">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col" aria-sort="ascending">Name</th>
+                <th scope="col">Role</th>
+                <th scope="col">Status</th>
+                <th scope="col">Joined</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Alice Johnson</strong></td>
+                <td>Designer</td>
+                <td><span class="badge badge-success badge-pill">Active</span></td>
+                <td class="text-muted">Jan 2023</td>
+              </tr>
+              <tr>
+                <td><strong>Bob Smith</strong></td>
+                <td>Engineer</td>
+                <td><span class="badge badge-success badge-pill">Active</span></td>
+                <td class="text-muted">Mar 2023</td>
+              </tr>
+              <tr>
+                <td><strong>Carol White</strong></td>
+                <td>Manager</td>
+                <td><span class="badge badge-warning badge-pill">Pending</span></td>
+                <td class="text-muted">Jun 2023</td>
+              </tr>
+              <tr class="row-danger">
+                <td><strong>Dave Brown</strong></td>
+                <td>Analyst</td>
+                <td><span class="badge badge-danger badge-pill">Suspended</span></td>
+                <td class="text-muted">Sep 2022</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       TABS
+       ===================================================== -->
+    <section id="tabs" class="demo-section" aria-labelledby="tabs-heading">
+      <div class="container">
+        <h2 id="tabs-heading" class="demo-section-title">Tabs</h2>
+        <p class="demo-section-desc">CSS-only tab panels using radio inputs — no JavaScript required.</p>
+
+        <h3 class="h5 mb-4">Underline (default)</h3>
+        <div class="tabs">
+          <div class="tab-list" role="tablist">
+            <input type="radio" name="demo-tabs" id="tab-1" class="tab-input" checked>
+            <label for="tab-1" class="tab" role="tab">Overview</label>
+            <input type="radio" name="demo-tabs" id="tab-2" class="tab-input">
+            <label for="tab-2" class="tab" role="tab">Usage</label>
+            <input type="radio" name="demo-tabs" id="tab-3" class="tab-input">
+            <label for="tab-3" class="tab" role="tab">API Reference</label>
+          </div>
+          <div class="tab-panels">
+            <div class="tab-panel">
+              <p class="text-sm text-muted">Overview content — this panel is shown when Tab 1 is selected.</p>
+            </div>
+            <div class="tab-panel">
+              <p class="text-sm text-muted">Usage examples and code snippets go here.</p>
+            </div>
+            <div class="tab-panel">
+              <p class="text-sm text-muted">Full API reference with props, methods, and events.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="h5 mb-4 mt-10">Pills variant</h3>
+        <nav class="tab-list tab-list-pills" aria-label="Settings tabs">
+          <a href="#" class="tab tab-active">General</a>
+          <a href="#" class="tab">Security</a>
+          <a href="#" class="tab">Notifications</a>
+          <a href="#" class="tab">Billing</a>
+        </nav>
+
+        <h3 class="h5 mb-4 mt-10">Boxed variant</h3>
+        <nav class="tab-list tab-list-boxed" aria-label="View tabs">
+          <a href="#" class="tab tab-active">List</a>
+          <a href="#" class="tab">Grid</a>
+          <a href="#" class="tab">Kanban</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       TOOLTIP
+       ===================================================== -->
+    <section id="tooltip" class="demo-section" aria-labelledby="tooltip-heading">
+      <div class="container">
+        <h2 id="tooltip-heading" class="demo-section-title">Tooltip</h2>
+        <p class="demo-section-desc">CSS-only tooltips via the <code>data-tooltip</code> attribute. Hover or focus to
+          reveal.</p>
+
+        <div class="demo-row" style="padding: var(--space-8) 0; justify-content:center">
+          <button class="btn btn-secondary tooltip-trigger tooltip-top" data-tooltip="Appears above">Top</button>
+          <button class="btn btn-secondary tooltip-trigger tooltip-bottom" data-tooltip="Appears below">Bottom</button>
+          <button class="btn btn-secondary tooltip-trigger tooltip-left"
+            data-tooltip="Appears to the left">Left</button>
+          <button class="btn btn-secondary tooltip-trigger tooltip-right"
+            data-tooltip="Appears to the right">Right</button>
+          <button class="btn btn-primary tooltip-trigger" data-tooltip="Save your changes before leaving">Save</button>
+          <span class="badge badge-info tooltip-trigger" data-tooltip="This item is currently active"
+            tabindex="0">Active</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       TOAST
+       ===================================================== -->
+    <section id="toast" class="demo-section" aria-labelledby="toast-heading">
+      <div class="container">
+        <h2 id="toast-heading" class="demo-section-title">Toast</h2>
+        <p class="demo-section-desc">Notification toasts. The examples below are static previews — in production,
+          add/remove <code>.toast-show</code> via JS.</p>
+
+        <div style="display:flex; flex-direction:column; gap:var(--space-3); max-width:22rem">
+          <div class="toast toast-show toast-success" role="alert">
+            <span class="toast-icon">✓</span>
+            <div class="toast-body">
+              <p class="toast-title">Saved successfully</p>
+              <p class="toast-message">Your changes have been saved.</p>
+            </div>
+            <button class="toast-close" aria-label="Dismiss">×</button>
+          </div>
+          <div class="toast toast-show toast-danger" role="alert">
+            <span class="toast-icon">✕</span>
+            <div class="toast-body">
+              <p class="toast-title">Upload failed</p>
+              <p class="toast-message">File exceeds the 10 MB size limit.</p>
+            </div>
+            <button class="toast-close" aria-label="Dismiss">×</button>
+          </div>
+          <div class="toast toast-show toast-warning" role="alert">
+            <span class="toast-icon">⚠</span>
+            <div class="toast-body">
+              <p class="toast-title">Session expiring</p>
+              <p class="toast-message">You'll be signed out in 5 minutes.</p>
+            </div>
+            <button class="toast-close" aria-label="Dismiss">×</button>
+          </div>
+          <div class="toast toast-show toast-info" role="alert">
+            <span class="toast-icon">ℹ</span>
+            <div class="toast-body">
+              <p class="toast-title">Update available</p>
+              <p class="toast-message">A new version of BOAT UI is ready.</p>
+            </div>
+            <button class="toast-close" aria-label="Dismiss">×</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+    <section id="sidebar" class="demo-section" aria-labelledby="sidebar-heading">
+      <div class="container">
+        <h2 id="sidebar-heading" class="demo-section-title">Sidebar</h2>
+        <p class="demo-section-desc">Sticky sidebar navigation layout. Shown here as a contained preview.</p>
+
+        <div
+          style="border:1px solid var(--color-border); border-radius:var(--radius-2xl); overflow:hidden; height:28rem; display:flex">
+          <aside class="sidebar" style="position:relative; height:100%" aria-label="Demo sidebar">
+            <div class="sidebar-header">
+              <a href="#" class="sidebar-brand">⛵ App</a>
+            </div>
+            <nav class="sidebar-nav">
+              <p class="sidebar-label">Main</p>
+              <a href="#" class="sidebar-link sidebar-link-active">
+                <span class="sidebar-icon">⊞</span>
+                <span class="sidebar-link-text">Dashboard</span>
+              </a>
+              <a href="#" class="sidebar-link">
+                <span class="sidebar-icon">◎</span>
+                <span class="sidebar-link-text">Analytics</span>
+                <span class="sidebar-badge">New</span>
+              </a>
+              <a href="#" class="sidebar-link">
+                <span class="sidebar-icon">☰</span>
+                <span class="sidebar-link-text">Projects</span>
+              </a>
+              <hr class="sidebar-divider">
+              <p class="sidebar-label">Settings</p>
+              <a href="#" class="sidebar-link">
+                <span class="sidebar-icon">⚙</span>
+                <span class="sidebar-link-text">Preferences</span>
+              </a>
+              <a href="#" class="sidebar-link">
+                <span class="sidebar-icon">?</span>
+                <span class="sidebar-link-text">Help</span>
+              </a>
+            </nav>
+            <div class="sidebar-footer">
+              <div style="display:flex;align-items:center;gap:var(--space-3)">
+                <div class="skeleton skeleton-circle"
+                  style="width:2rem;height:2rem;animation:none;background:var(--color-bg-subtle)"></div>
+                <div>
+                  <p class="text-sm font-medium">Tom User</p>
+                  <p class="text-xs text-muted">tom@example.com</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <main style="flex:1;padding:var(--space-6);overflow-y:auto">
+            <h3 class="h5 mb-2">Dashboard</h3>
+            <p class="text-sm text-muted">Main content area. The sidebar stays sticky while this area scrolls.</p>
+          </main>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+     FOOTER
+     ===================================================== -->
+  <footer class="border-t py-12" role="contentinfo">
+    <div class="container">
+      <div class="grid-3 gap-8">
+        <div>
+          <p class="font-bold text-lg mb-3">⛵ BOAT UI</p>
+          <p class="text-sm text-muted">A production-ready, ultra-lightweight semantic HTML/CSS component library. Zero
+            JavaScript. Zero dependencies.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-sm mb-3 uppercase tracking-wider text-muted">Documentation</p>
+          <ul class="stack-2 list-none">
+            <li><a href="docs/getting-started.md" class="text-sm">Getting Started</a></li>
+            <li><a href="docs/theming.md" class="text-sm">Theming</a></li>
+            <li><a href="docs/components.md" class="text-sm">Components</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-sm mb-3 uppercase tracking-wider text-muted">Components</p>
+          <ul class="stack-2 list-none">
+            <li><a href="#accordion" class="text-sm">Accordion</a></li>
+            <li><a href="#alerts" class="text-sm">Alerts</a></li>
+            <li><a href="#badges" class="text-sm">Badges</a></li>
+            <li><a href="#buttons" class="text-sm">Buttons</a></li>
+            <li><a href="#cards" class="text-sm">Cards</a></li>
+            <li><a href="#dropdown" class="text-sm">Dropdown</a></li>
+            <li><a href="#forms" class="text-sm">Forms</a></li>
+            <li><a href="#modals" class="text-sm">Modals</a></li>
+            <li><a href="#progress" class="text-sm">Progress</a></li>
+            <li><a href="#sidebar" class="text-sm">Sidebar</a></li>
+            <li><a href="#skeleton" class="text-sm">Skeleton</a></li>
+            <li><a href="#spinner" class="text-sm">Spinner</a></li>
+            <li><a href="#table" class="text-sm">Table</a></li>
+            <li><a href="#tabs" class="text-sm">Tabs</a></li>
+            <li><a href="#toast" class="text-sm">Toast</a></li>
+            <li><a href="#tooltip" class="text-sm">Tooltip</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t mt-8 pt-8 d-flex items-center justify-between flex-wrap gap-4">
+        <p class="text-sm text-muted">Built with ♥ using only HTML &amp; CSS. No JavaScript. No dependencies.</p>
+        <div class="d-flex gap-3">
+          <span class="badge badge-success badge-pill">v1.0.0</span>
+          <span class="badge badge-neutral badge-pill">MIT License</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================
+     MODALS (placed at end of body)
+     ===================================================== -->
+
+  <!-- Basic Modal -->
+  <div id="modal-basic" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-basic-title">
+    <a href="#" class="modal-backdrop" aria-label="Close modal"></a>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-basic-title" class="modal-title">Modal Title</h2>
+          <a href="#" class="btn-close" aria-label="Close modal"></a>
+        </div>
+        <div class="modal-body">
+          <p>This is a CSS-only modal dialog. It uses the <code>:target</code> pseudo-class to show/hide without any
+            JavaScript.</p>
+          <p class="mt-4">Click the backdrop or the × button to close. The body scroll is locked via
+            <code>body:has(.modal:target)</code>.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-secondary">Cancel</a>
+          <a href="#" class="btn btn-primary">Confirm</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Dialog -->
+  <div id="modal-confirm" class="modal modal-alert" role="alertdialog" aria-modal="true"
+    aria-labelledby="modal-confirm-title">
+    <a href="#" class="modal-backdrop" aria-label="Close dialog"></a>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-confirm-title" class="modal-title">Delete Account</h2>
+          <a href="#" class="btn-close" aria-label="Close dialog"></a>
+        </div>
+        <div class="modal-body" style="text-align: center; padding-top: var(--space-8);">
+          <span class="modal-icon">⚠️</span>
+          <p>Are you sure you want to delete your account? This action <strong>cannot be undone</strong> and all your
+            data will be permanently removed.</p>
+        </div>
+        <div class="modal-footer" style="justify-content: center;">
+          <a href="#" class="btn btn-secondary">Cancel</a>
+          <a href="#" class="btn btn-danger">Yes, Delete Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Large Modal -->
+  <div id="modal-lg" class="modal modal-lg" role="dialog" aria-modal="true" aria-labelledby="modal-lg-title">
+    <a href="#" class="modal-backdrop" aria-label="Close modal"></a>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-lg-title" class="modal-title">Large Modal</h2>
+          <a href="#" class="btn-close" aria-label="Close modal"></a>
+        </div>
+        <div class="modal-body">
+          <p>Large modals are useful for complex forms, data tables, or detailed content that needs more space.</p>
+          <div class="grid-2 mt-6 gap-4">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="modal-first">First Name</label>
+              <input type="text" id="modal-first" class="form-control" placeholder="John">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="modal-last">Last Name</label>
+              <input type="text" id="modal-last" class="form-control" placeholder="Doe">
+            </div>
+            <div class="form-group col-span-full" style="margin-bottom: 0;">
+              <label class="form-label" for="modal-email">Email</label>
+              <input type="email" id="modal-email" class="form-control" placeholder="john@example.com">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-secondary">Cancel</a>
+          <a href="#" class="btn btn-primary">Save Changes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side Drawer -->
+  <div id="modal-drawer" class="modal modal-drawer" role="dialog" aria-modal="true"
+    aria-labelledby="modal-drawer-title">
+    <a href="#" class="modal-backdrop" aria-label="Close drawer"></a>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-drawer-title" class="modal-title">Side Drawer</h2>
+          <a href="#" class="btn-close" aria-label="Close drawer"></a>
+        </div>
+        <div class="modal-body">
+          <p class="mb-6">Drawers slide in from the side. Great for settings panels, filters, or navigation on mobile.
+          </p>
+          <div class="stack-4">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="drawer-theme">Theme</label>
+              <select id="drawer-theme" class="form-select">
+                <option>System default</option>
+                <option>Light</option>
+                <option>Dark</option>
+              </select>
+            </div>
+            <div>
+              <p class="form-label mb-3">Notifications</p>
+              <label class="form-switch">
+                <input type="checkbox" class="form-switch-input" checked>
+                <span class="form-check-label">Push notifications</span>
+              </label>
+              <label class="form-switch mt-2">
+                <input type="checkbox" class="form-switch-input">
+                <span class="form-check-label">Email digest</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" class="btn btn-secondary">Reset</a>
+          <a href="#" class="btn btn-primary">Save Settings</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
